@@ -11,7 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/img', express.static(path.join(__dirname, './public/img')))
 
 const db = require('./app/models/index')
-db.mongoose.connect(db.url)
+db.mongoose.connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    user: process.env.MONGODB_ADDON_USER,
+    pass: process.env.MONGODB_ADDON_PASSWORD,
+    dbName: process.env.MONGODB_ADDON_DB,
+  })
     .then(() => {
         console.log("Connected to the database");
     })
