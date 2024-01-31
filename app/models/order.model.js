@@ -1,7 +1,7 @@
 module.exports = mongoose => {
     const schema = mongoose.Schema({
         user_id:Number,
-        cart_items: [String]
+        cart_items: [{type: String, unique:true}]
     })
 
     schema.method('toJson', function () {

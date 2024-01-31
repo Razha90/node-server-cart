@@ -33,12 +33,12 @@ exports.findOrder = (req, res) => {
 exports.addToCart= (req, res) => {
     const id = Number(req.params.id)
     const productCode = String(req.body.product)
-
+    console.log(id, productCode);
     Order.updateOne({
         user_id: id
     },{
         $addToSet: {
-            cart_items: productCode
+            cart_items: String(productCode)
         }
     }).then(result => {
         res.send(result)
